@@ -6,31 +6,32 @@
         <div class="col-md-offset-3 col-md-6">
           <h1><%= title %></h1>
             <form class="form" method="post">
+                
               <div class="form-group">
                 <label for="NameTextField">Title</label>
                 <input type="text" class="form-control" id="NameTextField"
-                placeholder="Book Name" name="title" value="<%= books.title %>" required>
+                placeholder="Book Name" name="title" required>
               </div>
               <div class="form-group">
                 <label for="DescTextField">Description</label>
                 <input type="text" class="form-control" id="DescTextField"
-                placeholder="Book Description" name="description" value="<%= books.description %>"  required>
+                placeholder="Book Description" name="description"  required>
               </div>
               <div class="form-group">
                 <label for="PriceTextField">Price</label>
                 <input type="text" class="form-control" id="PriceTextField"
-                placeholder="Book Price" name="price" value="<%= books.price %>"  required>
+                placeholder="Book Price" name="price"  required>
               </div>
               <div class="form-group">
                 <label for="AuthorTextField">Author</label>
                 <input type="text" class="form-control" id="AuthorTextField"
-                placeholder="Book Author" name="author" value="<%= books.author %>"  required>
+                placeholder="Book Author" name="author" required>
               </div>
                             
               <div class="form-group">
                 <label for="GenreTextField">Genre</label>
                 <input type="text" class="form-control" id="GenreTextField"
-                placeholder="Book Genre" name="genre" value="<%= books.genre %>"  required>
+                placeholder="Book Genre" name="genre"  required>
               </div>
 
               <button type="submit" class="btn btn-primary"><i class="fa fa-check-square-o"></i> Submit</button>

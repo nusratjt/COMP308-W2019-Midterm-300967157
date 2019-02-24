@@ -1,15 +1,15 @@
 // modules required for routing
 let express = require('express');
 let router = express.Router();
-let mongoose = require('mongoose');
+//let mongoose = require('mongoose');
 
 // define the book model
-let book = require('../models/books');
+let booksModel = require('../models/books');
 
 /* GET books List page. READ */
 router.get('/', (req, res, next) => {
   // find all books in the books collection
-  book.find( (err, books) => {
+  booksModel.find( (err, books) => {
     if (err) {
       return console.error(err);
     }
@@ -29,7 +29,7 @@ router.get('/add', (req, res, next) => {
     /*****************
      * ADD CODE HERE *
      *****************/
-    res.render('books/details', {
+    res.render('books/add', {
       title: 'Add New Book'
   });
 
@@ -42,13 +42,15 @@ router.post('/add', (req, res, next) => {
      * ADD CODE HERE *
      *****************/
 
-    let newBook = book({
-      "firstName": req.body.firstName,
-      "lastName": req.body.lastName,
-      "age": req.body.age
+    let newBook = booksModel({
+      "Title": req.body.title,
+      "Description": req.body.description,
+      "Price": req.body.price,
+      "Author": req.body.author,
+      "Genre": req.body.genre
   });
 
-  book.create(newBook, (err, book) => {
+  booksModel.create(newBook, (err, booksModel) => {
       if(err) {
           console.log(err);
           res.end(err);
@@ -69,7 +71,7 @@ router.get('/edit/:id', (req, res, next) => {
      *****************/
     let id = req.params.id;
 
-    book.findById(id, (err, bookObject) => {
+    booksModel.findById(id, (err, booksObject) => {
         if(err) {
             console.log(err);
             res.end(err);
@@ -79,7 +81,7 @@ router.get('/edit/:id', (req, res, next) => {
             // show the edit view
             res.render('books/details', {
                 title: 'Edit Book',
-                book: bookObject
+                books: booksObject
             });
         }
     });
@@ -94,14 +96,16 @@ router.post('/edit/:id', (req, res, next) => {
 
     let id = req.params.id;
 
-    let updatedBook = book({
+    let updatedBook = booksModel({
         "_id": id,
-        "firstName": req.body.firstName,
-        "lastName": req.body.lastName,
-        "age": req.body.age
+        "Title": req.body.title,
+      "Description": req.body.description,
+      "Price": req.body.price,
+      "Author": req.body.author,
+      "Genre": req.body.genre
     });
 
-    book.update({_id: id}, updatedBook, (err) => {
+    booksModel.update({_id: id}, updatedBook, (err) => {
         if(err) {
             console.log(err);
             res.end(err);
@@ -122,7 +126,7 @@ router.get('/delete/:id', (req, res, next) => {
      *****************/
     let id = req.params.id;
 
-    book.remove({_id: id}, (err) => {
+    booksModel.remove({_id: id}, (err) => {
         if(err) {
             console.log(err);
             res.end(err);

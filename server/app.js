@@ -20,8 +20,8 @@ mongoDB.once('open', ()=> {
 
 
 // define routers
-let index = require('./routes/index'); // top level routes
-let books = require('./routes/books'); // routes for books
+let indexRouter = require('./routes/index'); // top level routes
+let booksRouter = require('./routes/books'); // routes for books
 
 let app = express();
 
@@ -35,11 +35,12 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, '../client')));
+app.use(express.static(path.join(__dirname, '../node_modules')));
 
 
 // route redirects
-app.use('/', index);
-app.use('/book-list', books);
+app.use('/', indexRouter);
+app.use('/book-list', booksRouter);
 
 
 // catch 404 and forward to error handler
