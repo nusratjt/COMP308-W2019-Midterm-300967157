@@ -14,6 +14,7 @@ let passport = require('passport');
 let book = require('../models/books');
 
 function requireAuth(req, res, next) {
+    //console.log(req.users.userName);
     // check if the user is logged in
     if(!req.isAuthenticated()) {
         return res.redirect('/login');
