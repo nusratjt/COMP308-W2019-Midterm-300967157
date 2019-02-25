@@ -26,19 +26,19 @@
                 </thead>
                 <tbody>
                 <!-- Template Row -->
-                <% for (let count = 0; count < books.length; count++) { %>
+                <% for (let count = 0; count < bookList.length; count++) { %>
                 <tr>
-                  <td><%= books[count].Title %></td>
-                  <td><%= books[count].Description %></td>
-                  <td class="text-center">$<%= books[count].Price %></td>
-                  <td class="text-center"><%= books[count].Author %></td>
-                  <td class="text-center"><%= books[count].Genre %></td>
+                  <td><%= bookList[count].Title %></td>
+                  <td><%= bookList[count].Description %></td>
+                  <td class="text-center">$<%= bookList[count].Price %></td>
+                  <td class="text-center"><%= bookList[count].Author %></td>
+                  <td class="text-center"><%= bookList[count].Genre %></td>
 
                   <td class="text-center">
                     <!-- ------------------------ -->
                     <!-- ADD the EDIT BUTTON HERE -->
                     <!-- ------------------------ -->
-                    <a href="/book-list/edit/<%= books[count]._id %>"
+                    <a href="/book-list/edit/<%= bookList[count]._id %>"
                       class="btn btn-primary"><i class="fas fa-pencil-alt"></i> Edit</a>
                   </td>
 
@@ -46,7 +46,7 @@
                     <!-- ------------------------ -->
                     <!-- ADD the DELETE BUTTON HERE -->
                     <!-- ------------------------ -->
-                    <a href="/book-list/delete/<%= books[count]._id %>"
+                    <a href="/book-list/delete/<%= bookList[count]._id %>"
                       class="btn btn-danger"><i class="fas fa-trash-alt"></i> Delete</a>
                   </td>
                 </tr>

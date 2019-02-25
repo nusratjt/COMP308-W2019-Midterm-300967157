@@ -1,6 +1,6 @@
 module.exports = {
   //local MongoDB deployment ->
-  "URI": "mongodb://localhost/books"
+ //"URI": "mongodb://localhost/books"
   //Remote MongoDB deployment -> let 
-  //"URI" :"mongodb://thomas:123456@ds161059.mlab.com:61059/books308"
+  "URI" :"mongodb://nusrat:nusrat12345@ds058508.mlab.com:58508/comp308-w2019-midterm-300967157"
 };
