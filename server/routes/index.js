@@ -6,8 +6,14 @@
  */
 
 // modules required for routing
-let express = require('express');
+let express = require("express");
 let router = express.Router();
+let mongoose = require("mongoose");
+let passport = require("passport");
+
+// define the User Model
+let usersModel = require("../models/users");
+let Users = usersModel.Users; // alias
 
 // define the b0ok model
 let book = require('../models/books');
@@ -15,7 +21,8 @@ let book = require('../models/books');
 /* GET home page. wildcard */
 router.get('/', (req, res, next) => {
   res.render('content/index', {
-    title: 'Home Page' 
+    title: 'Home Page',
+    displayName: req.users ? req.users.displayName : "" 
    });
 });
 
@@ -23,7 +30,8 @@ router.get('/', (req, res, next) => {
 router.get('/book-list', (req, res, next) => {
   res.render('content/index', {
     title: 'My Favourite Books',
-    books:''
+    books:'',
+    displayName: req.users ? req.users.displayName : ""
    });
 });
 
