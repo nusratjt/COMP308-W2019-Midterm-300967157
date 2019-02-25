@@ -1,3 +1,10 @@
+/**
+ * File name: server.js
+ * Author's name: Nusrat Jahan
+ * Student Id: 300967157
+ * Web App name: Favourite Book List
+ */
+
 let app = require('./server/app');
 let debug = require('debug')('comp308-w2019-midterm:server');
 let http = require('http');

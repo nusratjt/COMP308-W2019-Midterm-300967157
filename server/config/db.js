@@ -1,5 +1,5 @@
 /**
- * File name: db.js
+ * File name: config/db.js
  * Author's name: Nusrat Jahan
  * Student Id: 300967157
  * Web App name: Favourite Book List

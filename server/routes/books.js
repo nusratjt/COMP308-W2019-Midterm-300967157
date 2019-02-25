@@ -1,3 +1,10 @@
+/**
+ * File name: routes/books.js
+ * Author's name: Nusrat Jahan
+ * Student Id: 300967157
+ * Web App name: Favourite Book List
+ */
+
 // modules required for routing
 let express = require('express');
 let router = express.Router();
@@ -25,6 +32,7 @@ router.get('/', (req, res, next) => {
 //  GET the Book Details page in order to add a new Book
 router.get('/add', (req, res, next) => {
 
+    // get the book insertion form page
     res.render('books/details', {
         title: 'Add New Book',
         books: ''
@@ -36,6 +44,7 @@ router.get('/add', (req, res, next) => {
 // POST process the Book Details page and create a new Book - CREATE
 router.post('/add', (req, res, next) => {
 
+    // create new book model
     let newBook = book({
         "Title": req.body.title,
         "Description": req.body.description,
@@ -60,7 +69,7 @@ router.post('/add', (req, res, next) => {
 // GET the Book Details page in order to edit an existing Book
 router.get('/edit/:id', (req, res, next) => {
 
-    let id = req.params.id;
+    let id = req.params.id; //create an id
 
     book.findById(id, (err, bookObject) => {
         if (err) {
@@ -81,8 +90,9 @@ router.get('/edit/:id', (req, res, next) => {
 // POST - process the information passed from the details form and update the document
 router.post('/edit/:id', (req, res, next) => {
 
-    let id = req.params.id;
+    let id = req.params.id; //create an id
 
+    // create updated book model
     let updatedBook = book({
         "_id": id,
         "Title": req.body.title,
@@ -108,7 +118,7 @@ router.post('/edit/:id', (req, res, next) => {
 // GET - process the delete by user id
 router.get('/delete/:id', (req, res, next) => {
 
-    let id = req.params.id;
+    let id = req.params.id;  //create an id
 
     book.remove({ _id: id }, (err) => {
         if (err) {
