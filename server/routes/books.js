@@ -3,12 +3,12 @@ let express = require('express');
 let router = express.Router();
 
 // define the book model
-let booksModel = require('../models/books');
+let book = require('../models/books');
 
 /* GET books List page. READ */
 router.get('/', (req, res, next) => {
     // find all books in the books collection
-    booksModel.find((err, bookList) => {
+    book.find((err, bookList) => {
         if (err) {
             return console.error(err);
         }
@@ -25,8 +25,10 @@ router.get('/', (req, res, next) => {
 //  GET the Book Details page in order to add a new Book
 router.get('/add', (req, res, next) => {
 
-    res.render('books/add', {
-        title: 'Add New Book'
+    res.render('books/details', {
+        title: 'Add New Book',
+        books: ''
+        
     });
 
 });
@@ -34,7 +36,7 @@ router.get('/add', (req, res, next) => {
 // POST process the Book Details page and create a new Book - CREATE
 router.post('/add', (req, res, next) => {
 
-    let newBook = booksModel({
+    let newBook = book({
         "Title": req.body.title,
         "Description": req.body.description,
         "Price": req.body.price,
@@ -42,14 +44,14 @@ router.post('/add', (req, res, next) => {
         "Genre": req.body.genre
     });
 
-    booksModel.create(newBook, (err, booksModel) => {
+    book.create(newBook, (err, book) => {
         if (err) {
             console.log(err);
             res.end(err);
         }
         else {
             // refresh the book list
-            res.redirect('/book-list');
+            res.redirect('/books');
         }
     });
 
@@ -60,7 +62,7 @@ router.get('/edit/:id', (req, res, next) => {
 
     let id = req.params.id;
 
-    booksModel.findById(id, (err, bookObject) => {
+    book.findById(id, (err, bookObject) => {
         if (err) {
             console.log(err);
             res.end(err);
@@ -81,7 +83,7 @@ router.post('/edit/:id', (req, res, next) => {
 
     let id = req.params.id;
 
-    let updatedBook = booksModel({
+    let updatedBook = book({
         "_id": id,
         "Title": req.body.title,
         "Description": req.body.description,
@@ -90,14 +92,14 @@ router.post('/edit/:id', (req, res, next) => {
         "Genre": req.body.genre
     });
 
-    booksModel.update({ _id: id }, updatedBook, (err) => {
+    book.update({ _id: id }, updatedBook, (err) => {
         if (err) {
             console.log(err);
             res.end(err);
         }
         else {
             // refresh the contact list
-            res.redirect('/book-list');
+            res.redirect('/books');
         }
     })
 
@@ -108,14 +110,14 @@ router.get('/delete/:id', (req, res, next) => {
 
     let id = req.params.id;
 
-    booksModel.remove({ _id: id }, (err) => {
+    book.remove({ _id: id }, (err) => {
         if (err) {
             console.log(err);
             res.end(err);
         }
         else {
             // refresh the contact list
-            res.redirect('/book-list');
+            res.redirect('/books');
         }
     });
 });

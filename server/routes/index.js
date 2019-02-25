@@ -13,7 +13,7 @@ router.get('/', (req, res, next) => {
 });
 
 /* GET book list page. wildcard */
-router.get('/books', (req, res, next) => {
+router.get('/book-list', (req, res, next) => {
   res.render('content/index', {
     title: 'books'
    });
