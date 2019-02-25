@@ -72,11 +72,15 @@ app.use(passport.session());
 // pasport user configuration
 
 // create a User model
+let usersModel = require('./models/users');
+let Users = usersModel.Users;
 
 // implement a User authetication strategy
-
+passport.use(Users.createStrategy());
 
 // serialize and deserialize the User info
+passport.serializeUser(Users.serializeUser());
+passport.deserializeUser(Users.deserializeUser());
 
 
 // route redirects
