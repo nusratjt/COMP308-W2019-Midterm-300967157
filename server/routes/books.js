@@ -8,13 +8,12 @@
 // modules required for routing
 let express = require('express');
 let router = express.Router();
-let passport = require('passport');
 
 // define the book model
 let book = require('../models/books');
 
 function requireAuth(req, res, next) {
-    //console.log(req.users.userName);
+
     // check if the user is logged in
     if(!req.isAuthenticated()) {
         return res.redirect('/login');
@@ -33,7 +32,7 @@ router.get('/', requireAuth, (req, res, next) => {
             res.render('books/index', {
                 title: 'Books',
                 bookList: bookList,
-                displayName: req.users ? req.users.displayName : ""
+                displayName: req.user ? req.user.displayName : ""
             });
         }
     });
@@ -47,7 +46,7 @@ router.get('/add', requireAuth, (req, res, next) => {
     res.render('books/details', {
         title: 'Add New Book',
         books: '',
-        displayName: req.users ? req.users.displayName : ""
+        displayName: req.user ? req.user.displayName : ""
         
     });
 
@@ -93,7 +92,7 @@ router.get('/edit/:id', requireAuth, (req, res, next) => {
             res.render('books/details', {
                 title: 'Edit Book',
                 books: bookObject,
-                displayName: req.users ? req.users.displayName : ""
+                displayName: req.user ? req.user.displayName : ""
 
             });
         }

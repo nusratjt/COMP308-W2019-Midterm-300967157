@@ -2,7 +2,7 @@
 let mongoose = require("mongoose");
 let passportLocalMongoose = require("passport-local-mongoose");
 
-let usersSchema = mongoose.Schema(
+let userSchema = mongoose.Schema(
   {
     username: {
       type: String,
@@ -43,6 +43,6 @@ let options = ({
     missingPasswordError: "Wrong / Missing Password"
 });
 
-usersSchema.plugin(passportLocalMongoose, options);
+userSchema.plugin(passportLocalMongoose, options);
 
-module.exports.Users = mongoose.model('Users', usersSchema);
+module.exports.User = mongoose.model('User', userSchema);
