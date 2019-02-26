@@ -69,18 +69,18 @@ app.use(flash());
 app.use(passport.initialize());
 app.use(passport.session());
 
-// pasport user configuration
+// passport user configuration
 
 // create a User model
-let usersModel = require('./models/users');
-let Users = usersModel.Users;
+let userModel = require('./models/users');
+let User = userModel.User;
 
 // implement a User authetication strategy
-passport.use(Users.createStrategy());
+passport.use(User.createStrategy());
 
 // serialize and deserialize the User info
-passport.serializeUser(Users.serializeUser());
-passport.deserializeUser(Users.deserializeUser());
+passport.serializeUser(User.serializeUser());
+passport.deserializeUser(User.deserializeUser());
 
 
 // route redirects
